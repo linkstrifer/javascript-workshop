@@ -15,13 +15,15 @@ registerLanguage('javascript', js)
 // ---
 import data from './../data/subjects.json'
 import assert from './../assert'
-import { calcArea, helloWorld } from './exercise'
+import { calcArea, helloWorld, fixItFelixJr, notANumber } from './exercise'
 
 const subject = data.subjects.find((item) => item.id === '01')
 
 function runTest() {
-  assert(calcArea(10, 4) === 40 && calcArea(12, 8) === 96, 'Calculate triangle area')
   assert(helloWorld() === 'Hello World', 'Return Hello World')
+  assert(calcArea(10, 4) === 40 && calcArea(12, 8) === 96, 'Calculate triangle area')
+  assert(fixItFelixJr() === 11, 'Felix Jr fixed')
+  assert(isNaN(notANumber() && typeof notANumber() === 'number'), 'is not a number')
 }
 
 class Subject extends React.Component {
@@ -78,13 +80,13 @@ class Subject extends React.Component {
 
           <SyntaxHighlighter language="javascript" style={ docco }>
             {
-    `// a one line comment
+`// a one line comment
 
-    /* this is a longer,
-      multi-line comment
-    */
+/* this is a longer,
+  multi-line comment
+*/
 
-    /* You can't, however, /* nest comments */ SyntaxError */`
+/* You can't, however, /* nest comments */ SyntaxError */`
             }
           </SyntaxHighlighter>
 
@@ -168,6 +170,73 @@ class Subject extends React.Component {
               With the keyword let. For example, <code>let y = 13</code>. This syntax can be used to declare a block-scope local variable.
             </li>
           </ul>
+
+          <h4>
+            Evaluating variables
+          </h4>
+
+          <p>
+            A variable declared using the var or let statement with no assigned value specified has the value of undefined.
+          </p>
+
+          <p>
+            An attempt to access an undeclared variable will result in a ReferenceError exception being thrown:
+          </p>
+
+          <SyntaxHighlighter language="javascript" style={ docco }>
+            {
+`var a;
+console.log('The value of a is ' + a); // The value of a is undefined
+
+var b;
+console.log('The value of b is ' + b); // The value of b is undefined
+
+console.log('The value of c is ' + c); // Uncaught ReferenceError: c is not defined
+
+let x;
+console.log('The value of x is ' + x); // The value of x is undefined
+
+console.log('The value of y is ' + y); // Uncaught ReferenceError: y is not defined
+let y;`
+            }
+          </SyntaxHighlighter>
+
+          <p>
+            You can use <code>undefined</code> to determine whether a variable has a value. In the following code, the variable input is not assigned a value, and the if statement evaluates to <code>true</code>.
+          </p>
+
+          <SyntaxHighlighter language="javascript" style={ docco }>
+            {
+`var input;
+if (input === undefined) {
+  doThis();
+} else {
+  doThat();
+}`
+            }
+          </SyntaxHighlighter>
+
+          <p>
+            The <code>undefined</code> value converts to <code>NaN</code> when used in numeric context.
+          </p>
+
+          <SyntaxHighlighter language="javascript" style={ docco }>
+            {
+`var a;
+a + 2;  // Evaluates to NaN`
+            }
+          </SyntaxHighlighter>
+
+          <p>
+            When you evaluate a <code>null</code> variable, the null value behaves as 0 in numeric contexts and as <code>false</code> in boolean contexts. For example:
+          </p>
+
+          <SyntaxHighlighter language="javascript" style={ docco }>
+            {
+`var n = null;
+console.log(n * 32); // Will log 0 to the console`
+            }
+          </SyntaxHighlighter>
         </Content>
       </Wrapper>
     )
