@@ -1,18 +1,11 @@
-
-
 import Head from './../components/head'
 import Wrapper from './../components/wrapper'
 import Hero from './../components/hero'
 import Content from './../components/content'
+import Code from './../components/code'
 
 // ---
-import SyntaxHighlighter, { registerLanguage } from "react-syntax-highlighter/dist/light"
-import { docco } from 'react-syntax-highlighter/dist/styles'
-import js from 'react-syntax-highlighter/dist/languages/javascript'
 
-registerLanguage('javascript', js)
-
-// ---
 import data from './../data/subjects.json'
 import assert from './../assert'
 import { calcArea, helloWorld, fixItFelixJr, notANumber } from './exercise'
@@ -63,7 +56,7 @@ class Subject extends React.Component {
           </p>
 
           <p>
-            JavaScript is <b>case-sensitive</b> and uses the <b>Unicode</b> character set.
+            JavaScript is <strong>case-sensitive</strong> and uses the <strong>Unicode</strong> character set.
           </p>
 
           <p>
@@ -75,10 +68,10 @@ class Subject extends React.Component {
           </h3>
 
           <p>
-            The syntax of <b>comments</b> is the same as in C++ and in many other languages:
+            The syntax of <strong>comments</strong> is the same as in C++ and in many other languages:
           </p>
 
-          <SyntaxHighlighter language="javascript" style={ docco }>
+          <Code>
             {
 `// a one line comment
 
@@ -88,7 +81,7 @@ class Subject extends React.Component {
 
 /* You can't, however, /* nest comments */ SyntaxError */`
             }
-          </SyntaxHighlighter>
+          </Code>
 
           <h3>
             Declarations
@@ -183,13 +176,13 @@ class Subject extends React.Component {
             An attempt to access an undeclared variable will result in a ReferenceError exception being thrown:
           </p>
 
-          <SyntaxHighlighter language="javascript" style={ docco }>
+          <Code>
             {
 `var a;
 console.log('The value of a is ' + a); // The value of a is undefined
 
-var b;
 console.log('The value of b is ' + b); // The value of b is undefined
+var b;
 
 console.log('The value of c is ' + c); // Uncaught ReferenceError: c is not defined
 
@@ -199,13 +192,13 @@ console.log('The value of x is ' + x); // The value of x is undefined
 console.log('The value of y is ' + y); // Uncaught ReferenceError: y is not defined
 let y;`
             }
-          </SyntaxHighlighter>
+          </Code>
 
           <p>
             You can use <code>undefined</code> to determine whether a variable has a value. In the following code, the variable input is not assigned a value, and the if statement evaluates to <code>true</code>.
           </p>
 
-          <SyntaxHighlighter language="javascript" style={ docco }>
+          <Code>
             {
 `var input;
 if (input === undefined) {
@@ -214,29 +207,227 @@ if (input === undefined) {
   doThat();
 }`
             }
-          </SyntaxHighlighter>
+          </Code>
 
           <p>
             The <code>undefined</code> value converts to <code>NaN</code> when used in numeric context.
           </p>
 
-          <SyntaxHighlighter language="javascript" style={ docco }>
+          <Code>
             {
 `var a;
 a + 2;  // Evaluates to NaN`
             }
-          </SyntaxHighlighter>
+          </Code>
 
           <p>
             When you evaluate a <code>null</code> variable, the null value behaves as 0 in numeric contexts and as <code>false</code> in boolean contexts. For example:
           </p>
 
-          <SyntaxHighlighter language="javascript" style={ docco }>
+          <Code>
             {
 `var n = null;
 console.log(n * 32); // Will log 0 to the console`
             }
-          </SyntaxHighlighter>
+          </Code>
+
+          <h4>
+            Variable scope
+          </h4>
+
+          <p>
+            When you declare a variable outside of any function, it is called a global variable, because it is available to any other code in the current document. When you declare a variable within a function, it is called a local variable, because it is available only within that function.
+          </p>
+
+          <p>
+            JavaScript before ECMAScript 2015 does not have block statement scope; rather, a variable declared within a block is local to the <i>function (or global scope)</i> that the block resides within. For example the following code will log 5, because the scope of <code>x</code> is the function (or global context) within which <code>x</code> is declared, not the block, which in this case is an <code>if</code> statement.
+          </p>
+
+          <Code>
+            {
+`if (true) {
+  var x = 5;
+}
+console.log(x);  // x is 5`
+            }
+          </Code>
+
+          <p>
+            This behavior changes, when using the <code>let</code> declaration introduced in ECMAScript 2015.
+          </p>
+
+          <Code>
+            {
+`if (true) {
+  let y = 5;
+}
+console.log(y);  // ReferenceError: y is not defined`
+            }
+          </Code>
+
+          <h4>
+            Variable hoisting
+          </h4>
+
+          <p>
+            Another unusual thing about variables in JavaScript is that you can refer to a variable declared later, without getting an exception. This concept is known as <strong>hoisting</strong>; variables in JavaScript are in a sense "hoisted" or lifted to the top of the function or statement. However, variables that are hoisted will return a value of <code>undefined</code>. So even if you declare and initialize after you use or refer to this variable, it will still return <code>undefined</code>.
+          </p>
+
+          <Code>
+            {
+`/**
+ * Example 1
+ */
+console.log(x === undefined); // true
+var x = 3;
+
+/**
+ * Example 2
+ */
+// will return a value of undefined
+var myvar = 'my value';
+
+(function() {
+  console.log(myvar); // undefined
+  var myvar = 'local value';
+})();`
+            }
+          </Code>
+
+          <p>
+            The above examples will be interpreted the same as:
+          </p>
+
+          <Code>
+            {
+`/**
+ * Example 1
+ */
+var x;
+console.log(x === undefined); // true
+x = 3;
+
+/**
+ * Example 2
+ */
+var myvar = 'my value';
+
+(function() {
+  var myvar;
+  console.log(myvar); // undefined
+  myvar = 'local value';
+})();`
+            }
+          </Code>
+
+          <p>
+            Because of hoisting, all var statements in a function should be placed as near to the top of the function as possible. This best practice increases the clarity of the code.
+          </p>
+
+          <p>
+            In ECMAScript 2015, <code>let</code> (<code>const</code>) <strong>will not hoist</strong> the variable to the top of the block. However, referencing the variable in the block before the variable declaration results in a <code>ReferenceError</code>. The variable is in a "temporal dead zone" from the start of the block until the declaration is processed.
+          </p>
+
+          <Code>
+            {
+`console.log(x); // ReferenceError
+let x = 3;`
+            }
+          </Code>
+
+          <h4>
+            Function hoisting
+          </h4>
+
+          <p>
+            For functions, only function declaration gets hoisted to the top and not the function expression.
+          </p>
+
+          <Code>
+            {
+`/* Function declaration */
+
+foo(); // "bar"
+
+function foo() {
+  console.log('bar');
+}
+
+
+/* Function expression */
+
+baz(); // TypeError: baz is not a function
+
+var baz = function() {
+  console.log('bar2');
+};`
+            }
+          </Code>
+
+          <h4>
+            Global variables
+          </h4>
+
+          <p>
+            Global variables are in fact properties of the <i>global object</i>. In web pages the global object is <code>window</code>, so you can set and access global variables using the <code>window.variable</code> syntax.
+          </p>
+
+          <p>
+            Consequently, you can access global variables declared in one window or frame from another window or frame by specifying the window or frame name. For example, if a variable called <code>phoneNumber</code> is declared in a document, you can refer to this variable from an iframe as <code>parent.phoneNumber</code>.
+          </p>
+
+          <h4>
+            Constants
+          </h4>
+
+          <p>
+            You can create a read-only, named constant with the <code>const</code> keyword. The syntax of a constant identifier is the same as for a variable identifier: it must start with a letter, underscore or dollar sign ($) and can contain alphabetic, numeric, or underscore characters.
+          </p>
+
+          <Code>
+            {
+              `const PI = 3.14;`
+            }
+          </Code>
+
+          <p>
+            A constant cannot change value through assignment or be re-declared while the script is running. It has to be initialized to a value.
+          </p>
+
+          <p>
+            The scope rules for constants are the same as those for <code>let</code> block-scope variables. If the const keyword is omitted, the identifier is assumed to represent a variable.
+          </p>
+
+          <p>
+            You cannot declare a constant with the same name as a function or variable in the same scope. For example:
+          </p>
+
+          <Code>
+            {
+`// THIS WILL CAUSE AN ERROR
+function f() {};
+const f = 5;
+
+// THIS WILL CAUSE AN ERROR ALSO
+function f() {
+  const g = 5;
+  var g;
+
+  //statements
+}`
+            }
+          </Code>
+
+          <p>
+            However, the properties of objects assigned to constants are not protected, so the following statement is executed without problems.
+          </p>
+
+          <Code>
+            {
+`const MY_OBJECT = {'key': 'value'};
+MY_OBJECT.key = 'otherValue';`
+            }
+          </Code>
         </Content>
       </Wrapper>
     )
