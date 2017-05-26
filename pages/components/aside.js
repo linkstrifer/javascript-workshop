@@ -3,7 +3,7 @@ import MenuList from './menu/menuList'
 import data from './../data/subjects.json'
 
 const Aside = () => (
-  <aside className="menu">
+  <aside className="menu is-hidden-mobile">
     <MenuLabel label="Subjects"/>
     <MenuList list={ data.subjects }/>
   </aside>

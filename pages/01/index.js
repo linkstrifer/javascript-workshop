@@ -148,6 +148,26 @@ class Subject extends React.Component {
           <p>
             Some examples of legal names are <code>Number_hits</code>, <code>temp99</code>, <code>$credit</code>, and <code>_name</code>.
           </p>
+
+          <h4>
+            Declaring variables
+          </h4>
+
+          <p>
+            You can declare a variable in three ways:
+          </p>
+
+          <ul>
+            <li>
+              With the keyword <code>var</code>. For example, <code>var x = 42</code>. This syntax can be used to declare both local and global variables.
+            </li>
+            <li>
+              By simply assigning it a value. For example, <code>x = 42</code>. This always declares a global variable, if it is declared outside of any function. It generates a strict JavaScript warning. You shouldn't use this variant.
+            </li>
+            <li>
+              With the keyword let. For example, <code>let y = 13</code>. This syntax can be used to declare a block-scope local variable.
+            </li>
+          </ul>
         </Content>
       </Wrapper>
     )
