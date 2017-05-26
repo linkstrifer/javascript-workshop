@@ -1,9 +1,14 @@
 import Head from './components/head'
-import SubjectList from './components/subject-list'
+import Wrapper from './components/wrapper'
+import Hero from './components/hero'
 
-export default () => (
+const Index = () => (
     <div>
       <Head/>
-      <SubjectList/>
+      <Wrapper>
+        <Hero title="Hello hello..."/>
+      </Wrapper>
     </div>
 )
+
+export default Index
