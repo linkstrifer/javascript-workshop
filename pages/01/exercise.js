@@ -13,7 +13,7 @@ export function helloWorld() {
   // return hello + ' ' + world
 }
 
-// fix this code
+// Fix this function
 export function fixItFelixJr() {
   // const blocks = 10
   //
@@ -32,4 +32,15 @@ export function notANumber() {
   const result = 1
 
   return result
+}
+
+// Fix this function
+export function itsGoingToBe() {
+  // const waitForIt = true
+  //
+  // if (waitForIt) {
+  //   let legendary = 'legen - wait for it dary'
+  // }
+  //
+  // return legendary
 }
