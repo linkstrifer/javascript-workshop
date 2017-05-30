@@ -12,10 +12,7 @@ const Code = (props) => (
 )
 
 Code.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.array
-  ])
+  children: PropTypes.string
 }
 
 export default Code

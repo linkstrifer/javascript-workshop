@@ -6,6 +6,7 @@ const style = {
 
 const Content = (props) => {
   const content = props.children
+
   return (
     <div className="content" style={ style }>
       { content }
