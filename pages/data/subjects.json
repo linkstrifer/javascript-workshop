@@ -3,6 +3,10 @@
     {
       "id": "01",
       "label": "The Basics"
+    },
+    {
+      "id": "02",
+      "label": "Control flow and error handling"
     }
   ]
 }
