@@ -9,7 +9,7 @@ import data from './../data/subjects.json'
 import content from './content'
 import tests from './tests'
 
-const subject = data.subjects.find((item) => item.id === '01')
+const subject = data.subjects.find((item) => item.id === '02')
 
 class Subject extends React.Component {
   componentDidMount() {
