@@ -2,12 +2,6 @@
 
 // Before start coding, if the code is commented please uncomment it
 
-// TODO: add math exercises
-
-// TODO: add hoisting exercises, fix the error
-
-// TODO: add multiple selection questions
-
 // Define variable hello to 'Hello' and world to 'World' inside the function helloWorld
 export function helloWorld() {
   // return hello + ' ' + world
