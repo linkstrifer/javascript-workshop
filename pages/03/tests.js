@@ -33,11 +33,11 @@ let tests = [
     description: 'Fibonacci series'
   },
   {
-    assert: largerInteger([ 1,2,3,4,5,6,7,8,9,12,45,78,90 ]) === 90,
+    assert: largerInteger([ 1,2,3,4,5,6,7,8,90,12,45,78 ]) === 90,
     description: 'Return the larger integer'
   },
   {
-    assert: whileToN(10) === 30 && whileToN(100) === 2550,
+    assert: whileToN(10) === 25 && whileToN(100) === 2550,
     description: 'While to N'
   }
 ]
