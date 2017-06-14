@@ -37,7 +37,7 @@ let tests = [
     description: 'Return the larger integer'
   },
   {
-    assert: whileToN(10) === 25 && whileToN(100) === 2550,
+    assert: whileToN(10) === 25 && whileToN(100) === 2500,
     description: 'While to N'
   }
 ]
