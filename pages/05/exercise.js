@@ -34,7 +34,7 @@ export function scrabbleScore(word) {
   Return the n exponential of a number but using only the plus (+) operator
 */
 
-export function nExponential(number) {
+export function nExponential(number, n) {
   let result = 0
 
   return result
