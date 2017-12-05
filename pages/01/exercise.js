@@ -16,7 +16,7 @@ export function fixItFelixJr() {
   // return blocks
 }
 
-// Define a variable result equal to a triangle area (base * height) inside the function calcArea
+// Define a variable result equal to a square area (base * height) inside the function calcArea
 export function calcArea(base, height) {
   // return result
 }
